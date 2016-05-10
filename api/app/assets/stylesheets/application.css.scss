@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.app-header{
+  background:#0bf;
+  padding:8px 16px 8px 16px;
+  line-height: 2em;
+}
+.app-footer{
+  background:#07b;
+  padding:8px 16px 8px 16px;
+  line-height: 1.5em;
+  position: absolute;
+  width:100%;
+  bottom: 0;
+  color:#fff;
+}
+.app-logo{
+  font-size:x-large;
+  color:#fff;
+}
+.app-login{
+  font-size:large;
+  color:#fff;
+  vertical-align: middle;
+}
+.app-timer-header{
+}
+.app-timer-content{
+  position:relative;
+  margin-top: 1px;
+  border-bottom:1px solid #ddd;
+  padding:8px 8px 8px 8px;
+}
+.app-timer-content:hover{
+  margin-top: 0px;
+  border:1px solid #bbb;
+  background:#fdfdfd;
+}
+.app-timer-footer{
+}
+.app-timer-timer{
+  font-size:5em;
+}
+.app-btns a{
+  font-size:large;
+  background:#0bf;
+  color:#fff;
+}
+.app-btns a:hover{
+  font-size:large;
+  background:#8df;
+  color:#fff;
+}
+.app-delete{
+  font-size:large;
+  position:absolute;
+  top:0;
+  right:0;
+}
+.app-btn-toggle{}
