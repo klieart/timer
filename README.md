@@ -1,2 +1,2 @@
 # timer
-Simple timer webapp showcasing an Angular app and Rails api.
+Simple timer webapp showcasing a Rails api and Angular client.
