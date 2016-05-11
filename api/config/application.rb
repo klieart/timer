@@ -26,5 +26,17 @@ module Api
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Used to enable Cross-Origin Resource Sharing (CORS),
+    # in order to make cross-origin AJAX requests possible
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
+    # Rate Limiting and Throttling using Rack Attack gem
+    config.middleware.use Rack::Attack
   end
 end

@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
+# Used to enable Cross-Origin Resource Sharing (CORS),
+# in order to make cross-origin AJAX requests possible
+gem 'rack-cors'
+# Rate Limiting and Throttling
+gem 'rack-attack'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

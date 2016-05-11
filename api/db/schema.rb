@@ -11,9 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160511145332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "guests", force: :cascade do |t|
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timers", force: :cascade do |t|
+    t.string   "timerable_type"
+    t.integer  "timerable_id"
+    t.string   "name"
+    t.integer  "timer"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["timerable_type", "timerable_id"], name: "index_timers_on_timerable_type_and_timerable_id", using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "api_key"
+  end
 
 end
