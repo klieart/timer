@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timerable: one
+  timerable_type: Timerable
+  name: MyString
+  timer: 1
+
+two:
+  timerable: two
+  timerable_type: Timerable
+  name: MyString
+  timer: 1
