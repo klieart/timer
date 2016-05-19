@@ -1,0 +1,17 @@
+<div class="container">
+  <p>HELLO WORLD!</p>
+
+  <div class="row" style="border-bottom: #000 1px solid;">
+    <span ng-repeat="elem in main.timer">{{elem}} &#09; | </span>
+  </div>
+
+  <table class="table">
+    <tr>
+      <th ng-repeat="(key, val) in main.timers[0]">{{key}}</th>
+    </tr>
+
+    <tr ng-repeat="timer in main.timers">
+      <td ng-repeat="val in timer">{{val}}</td>
+    </tr>
+  </table>
+</div>
