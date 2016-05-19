@@ -1,8 +1,0 @@
-{
-	"name": "serving-grunt",
-	"version": "0.1.0",
-	"devDependencies": {
-		"grunt": "latest",
-		"grunt-connect": "latest"
-	}
-}
