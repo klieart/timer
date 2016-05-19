@@ -5,9 +5,13 @@ source 'https://rubygems.org'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 # Used to enable Cross-Origin Resource Sharing (CORS),
 # in order to make cross-origin AJAX requests possible
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 # Rate Limiting and Throttling
 gem 'rack-attack'
+# JSON Web Token library used for authentication
+gem 'jwt'
+# Library used to encrypt passwords in the database
+gem 'bcrypt'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

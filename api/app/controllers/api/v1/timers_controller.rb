@@ -1,5 +1,6 @@
 module Api::V1
   class TimersController < ApiController
+    before_action :authenticate!
     before_action :set_timer, only: [:show, :update, :destroy]
 
     # GET /timers
@@ -19,7 +20,7 @@ module Api::V1
       @timer = Timer.new(timer_params)
 
       if @timer.save
-        render json: @timer, status: :created, location: @timer
+        render json: @timer, status: :created, location: [:v1,@timer]
       else
         render json: @timer.errors, status: :unprocessable_entity
       end

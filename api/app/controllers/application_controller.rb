@@ -1,27 +1,33 @@
 class ApplicationController < ActionController::API
-  include ActionController::HttpAuthentication::Token::ControllerMethods
-
-  # Add a before_action to authenticate all requests.
-  # Move this to subclassed controllers if you only
-  # want to authenticate certain methods.
-  before_action :authenticate
+  attr_reader :current_user
 
   protected
-
-  # Authenticate the user with token based authentication
-  def authenticate
-    authenticate_token || render_unauthorized
-  end
-
-  def authenticate_token
-    authenticate_with_http_token do |token, options|
-      @current_user = User.find_by(api_key: token)
+  # Called by controllers decorated with "before_action :authenticate!"
+  # Returns current user if user from tooken is found
+  def authenticate!
+    user_id = get_user_id_from_token
+    if user_id
+      @current_user = User.find(user_id)
+    else
+      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
     end
+  rescue JWT::ExpiredSignature
+    render json: { errors: ['Authentication Timeout'] }, status: 419
+  rescue JWT::VerificationError, JWT::DecodeError
+    render json: { errors: ['Not Authenticated'] }, status: :unauthorized
   end
 
-  def render_unauthorized(realm = "Application")
-    self.headers["WWW-Authenticate"] = %(Token realm="#{realm.gsub(/"/, "")}")
-    render json: 'Bad credentials', status: :unauthorized
+  private
+
+  # Validates if User ID is in the token header
+  def get_user_id_from_token
+    if request.headers['Authorization'].present?
+      @token = request.headers['Authorization'].split(' ').last
+      @payload ||= AuthToken.decode(@token)
+      if @payload && @payload[:user_id]
+        return @payload[:user_id]
+      end
+    end
+    return nil
   end
-  
 end

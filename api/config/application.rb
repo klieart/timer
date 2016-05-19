@@ -12,6 +12,7 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -27,12 +28,13 @@ module Api
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.autoload_paths += %W(#{config.root}/lib)
     # Used to enable Cross-Origin Resource Sharing (CORS),
     # in order to make cross-origin AJAX requests possible
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        resource '*', :headers => :any, :methods => [:get, :post, :patch, :put, :delete, :options, :head], max_age: 0
       end
     end
 
